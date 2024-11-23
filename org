@@ -1,0 +1,34 @@
+(1) Tabla de páginas:
+    ** Por ahora usar std::map<int, int>, donde 1er int es el npv, y el 2do int es el nmp
+    ** Fallo de página ocurre cuando página virtual no está en memoria, es decir, npv no está en tabla y no tiene un marco de página asignado
+    ** Inicialmente tabla de paginas está vacía, por lo que siempre habrán fallos de pagina al inicio
+
+(2) Algoritmos de reemplazo:
+    ** Quizá clase abstracta algoritmo de reemplazo, Optimo, FIFO, LRU Reloj Simple heredan
+    ** Dependiendo parametro de entrada se instacia algoritmo de reemplazo?
+
+(3) Fallos de página:
+    ** Manejar acceso, si pagina esta no hacer nada / si pagina no esta ejecutar alg. reemplazo si no hay mp disponibles
+
+
+(1):
+
+* Leer las referencias de paginas virtuales (cada entrada es un npv), almacenarlas en un vector -> LISTO
+* usar std::map<> -> LISTO
+
+(2):
+
+* FIFO -> LISTO
+* Generalizar algoritmos de reemplazo (abstract replacement_algorithm) -> LISTO
+* subclases FIFO, Optimal, LRU, LRU Clock -> LISTO
+* métodos virtuales: 
+    ** int replace_page() -> busca víctima y devuelve su mp 
+    ** void handle_page_reference -> maneja referencia a pv, por ejemplo en FIFO
+                                     solamente añade referencia a queue
+* LRU -> LISTO
+
+* LRU_CLOCK: manejar consistencia cola circular - bits de refencia 
+-> problema: al quitar página víctima, nueva pagina debe ir en misma
+             pos., o hay problemas de consistencia en bits referencia
+ERROR ESTÁ EN MANEJO DE CLOCK_POINTER CUANDO SE ELIMINA UNA PÁGINA VICTIMA
+
