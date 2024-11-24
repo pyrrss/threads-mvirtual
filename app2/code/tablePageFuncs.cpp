@@ -4,6 +4,7 @@
 #include "tablePageFuncs.hpp"
 #include "LRU.hpp"
 #include "LRU_CLOCK.hpp"
+#include "OPTIMAL.hpp"
 
 bool is_page_present(std::map<int, int>& page_table, int virtual_page)
 {
@@ -60,6 +61,10 @@ void handle_page_access(std::map<int, int>& page_table, int virtual_page, Replac
         if(auto lru_clock_algorithm = dynamic_cast<LRU_CLOCK*>(&replacement_algorithm))
         {
             lru_clock_algorithm->handle_page_reference(virtual_page);
+        }
+        if(auto optimal_algorithm = dynamic_cast<OPTIMAL*>(&replacement_algorithm))
+        {
+            optimal_algorithm->handle_page_reference(virtual_page);
         }
     }
 

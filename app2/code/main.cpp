@@ -39,8 +39,8 @@ std::unique_ptr<ReplacementAlgorithm> create_algorithm(const std::string& algori
     {
         std::cout << "Se seleccionó algoritmo FIFO" << "\n";
         return std::make_unique<FIFO>();
-    } else if(algorithm_name == "Optimo") {
-        std::cout << "Se seleccionó algoritmo Optimo" << "\n";
+    } else if(algorithm_name == "OPTIMAL") {
+        std::cout << "Se seleccionó algoritmo OPTIMAL" << "\n";
         return std::make_unique<OPTIMAL>();
     } else if(algorithm_name == "LRU") {
         std::cout << "Se seleccionó algoritmo LRU" << "\n";
@@ -90,6 +90,9 @@ int main(int argc, char* argv[])
     auto replacement_algorithm = create_algorithm(algorithm);
     std::vector<int> references = read_references(references_file);
 
+    if (auto opt_algorithm = dynamic_cast<OPTIMAL*>(replacement_algorithm.get())) {
+        opt_algorithm->set_references(references);
+    }
 
     int page_faults = 0;
     for(int page_number : references)
