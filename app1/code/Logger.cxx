@@ -12,7 +12,7 @@ Logger::~Logger()
 	SELF.stream.close();
 }
 
-None Logger::print(const string& message)
+void Logger::print(const string& message)
 {
 	SELF.stream << message;
 	SELF.stream << '\n';

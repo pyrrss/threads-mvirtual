@@ -5,7 +5,7 @@
 
 struct Item
 {
-	Int num;
+	int num;
 	
 	friend ostream& operator<<(ostream& stream, const Item& item);
 };

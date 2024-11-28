@@ -5,18 +5,18 @@
 #include "Logger.hxx"
 #include "QueueTS.hxx"
 
-None producer(const Int& ID, QueueTS& queue)
+void producer(const int& ID, QueueTS& queue)
 {
 	cpp::mt19937 rng(ID);
 	cpp::uniform_int_distribution<> distribution(1, 5);
 	
-	Int amount = distribution(rng);
+	int amount = distribution(rng);
 	
-	for(Int i = 0; i < amount; i++)
+	for(int i = 0; i < amount; i++)
 		queue.push(Item(ID));
 }
 
-None consumer(const Int& ID, QueueTS& queue)
+void consumer(const int& ID, QueueTS& queue)
 {
 	while(true)
 	{
@@ -38,10 +38,10 @@ int main(int argc, char* args[])
 {
 	using thread = cpp::thread;
 	
-	Int size = -1;
-	Int time = -1;
-	Int countP = -1;
-	Int countC = -1;
+	int size = -1;
+	int time = -1;
+	int countP = -1;
+	int countC = -1;
 	{
 		try
 		{
@@ -80,10 +80,10 @@ int main(int argc, char* args[])
 	thread producers[countP];
 	thread consumers[countC];
 	
-	for(Int i = 0; i < countP; i++)
+	for(int i = 0; i < countP; i++)
 		producers[i] = thread(producer, i, cpp::ref(queue));
 	
-	for(Int i = 0; i < countC; i++)
+	for(int i = 0; i < countC; i++)
 		consumers[i] = thread(consumer, i, cpp::ref(queue));
 	
 	for(thread& producer : producers)

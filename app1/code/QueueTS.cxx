@@ -6,7 +6,7 @@
 
 using ulock = cpp::unique_lock<cpp::mutex>;
 
-QueueTS::QueueTS(Int size, Int maxWait, Logger* logger) : Queue(size), maxWait(maxWait), logger(logger)
+QueueTS::QueueTS(int size, int maxWait, Logger* logger) : Queue(size), maxWait(maxWait), logger(logger)
 {
 }
 
@@ -22,9 +22,9 @@ Item QueueTS::pop()
 			throw -1;
 	}
 	
-	Int capacity1 = SELF.capacity();
+	int capacity1 = SELF.capacity();
 	Item item = Queue::pop();
-	Int capacity2 = SELF.capacity();
+	int capacity2 = SELF.capacity();
 	
 	if(SELF.logger != NULLPTR)
 	{
@@ -48,13 +48,13 @@ Item QueueTS::pop()
 	return item;
 }
 
-None QueueTS::push(Item item)
+void QueueTS::push(Item item)
 {
 	ulock lock(SELF.mutex);
 	
-	Int capacity1 = SELF.capacity();
+	int capacity1 = SELF.capacity();
 	Queue::push(item);
-	Int capacity2 = SELF.capacity();
+	int capacity2 = SELF.capacity();
 	
 	if(SELF.logger != NULLPTR)
 	{

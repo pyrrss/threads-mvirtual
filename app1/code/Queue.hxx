@@ -7,26 +7,26 @@
 class Queue
 {
 	public:
-		Queue(Int size);
+		Queue(int size);
 		~Queue();
 		
-		Int size();
-		Int capacity();
+		int size();
+		int capacity();
 		
 		Item pop();
-		None push(Item item);
+		void push(Item item);
 		
 		friend ostream& operator<<(ostream& stream, const Queue& queue);
 	
 	private:
-		Int first;
-		Int final;
+		int first;
+		int final;
 		
-		Int limit;
+		int limit;
 		
 		Item* items;
 		
-		None resize(Int size);
+		void resize(int size);
 };
 
 #endif

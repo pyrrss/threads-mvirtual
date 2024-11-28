@@ -12,13 +12,13 @@
 class QueueTS : public Queue
 {
 	public:
-		QueueTS(Int size, Int maxWait, Logger* logger);
+		QueueTS(int size, int maxWait, Logger* logger);
 		
 		Item pop();
-		None push(Item item);
+		void push(Item item);
 	
 	private:
-		Int maxWait;
+		int maxWait;
 		
 		Logger* logger;
 		

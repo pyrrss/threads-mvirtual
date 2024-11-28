@@ -12,7 +12,7 @@ class Logger
 		Logger(const string& route);
 		~Logger();
 		
-		None print(const string& message);
+		void print(const string& message);
 	
 	private:
 		cpp::ofstream stream;

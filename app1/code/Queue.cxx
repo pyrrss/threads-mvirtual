@@ -2,7 +2,7 @@
 
 #include "Queue.hxx"
 
-Queue::Queue(Int size) : first(0), final(0), limit(size)
+Queue::Queue(int size) : first(0), final(0), limit(size)
 {
 	SELF.items = (Item*) malloc(sizeof(Item) * SELF.limit);
 }
@@ -12,7 +12,7 @@ Queue::~Queue()
 	delete SELF.items;
 }
 
-Int Queue::size()
+int Queue::size()
 {
 	if(SELF.first <= SELF.final)
 		return SELF.final - SELF.first;
@@ -21,7 +21,7 @@ Int Queue::size()
 		return SELF.limit - (SELF.first - SELF.final);
 }
 
-Int Queue::capacity()
+int Queue::capacity()
 {
 	return SELF.limit;
 }
@@ -41,7 +41,7 @@ Item Queue::pop()
 	return item;
 }
 
-None Queue::push(Item item)
+void Queue::push(Item item)
 {
 	if(SELF.size() == (SELF.limit - 1))
 		SELF.resize(SELF.limit * 2);
@@ -52,7 +52,7 @@ None Queue::push(Item item)
 	SELF.final %= SELF.limit;
 }
 
-None Queue::resize(Int size)
+void Queue::resize(int size)
 {
 	assert(size >= SELF.size());
 	
@@ -60,7 +60,7 @@ None Queue::resize(Int size)
 	
 	SELF.items = (Item*) malloc(sizeof(Item) * size);
 	
-	for(Int i = 0; i < SELF.size(); i++)
+	for(int i = 0; i < SELF.size(); i++)
 		SELF.items[i] = aux[(i + SELF.first) % SELF.limit];
 	
 	SELF.final = SELF.size();
@@ -73,12 +73,12 @@ None Queue::resize(Int size)
 
 ostream& operator<<(ostream& stream, const Queue& queue)
 {
-	for(Int i = 0; i < queue.limit; i++)
+	for(int i = 0; i < queue.limit; i++)
 	{
-		Bool inRange = (i >= queue.first) && (i < queue.final);
+		bool inRange = (i >= queue.first) && (i < queue.final);
 		
-		Bool aux1 = (queue.first < queue.final) && inRange;
-		Bool aux2 = (queue.first > queue.final) && !inRange;
+		bool aux1 = (queue.first < queue.final) && inRange;
+		bool aux2 = (queue.first > queue.final) && !inRange;
 		
 		if(aux1 || aux2)
 			stream << queue.items[i];
