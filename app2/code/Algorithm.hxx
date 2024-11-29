@@ -13,6 +13,3 @@ class Algorithm
 };
 
 #endif
-
-
-
