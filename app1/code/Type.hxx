@@ -1,3 +1,4 @@
+
 #ifndef TYPE_H
 #define TYPE_H
 
@@ -13,3 +14,6 @@ using ostream = cpp::ostream;
 using string = cpp::string;
 
 #endif
+
+
+

@@ -34,6 +34,9 @@ class FIFO : public Algorithm
 	private:
 		cpp::set<int> npvsInQueue;
 		cpp::queue<int> queue;
-};
+
 
 #endif
+
+
+
